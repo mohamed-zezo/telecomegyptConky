@@ -11,7 +11,7 @@ The only dependencies are `ispapi` and `jq`.
 You can install them via
 
 ```bash
-$ git clone https://github.com/grimpy/ispapi.git
+$ git clone git@github.com:mohamed-zezo/ispapi.git
 $ cd ispapi
 $ sudo python3 setup.py install --record files.txt
 ```
