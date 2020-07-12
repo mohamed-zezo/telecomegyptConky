@@ -30,7 +30,7 @@ $ xargs rm -rf < files.txt
 
 ```bash
 $ mkdir -p ~/.conky
-$ git clone git@github.com:mohamed-zezo/telecomegyptConky.git ~/.conky/
+$ git clone git@github.com:mohamed-zezo/telecomegyptConky.git ~/.conky/telecomegyptConky
 ```
 
 ## Configuration
