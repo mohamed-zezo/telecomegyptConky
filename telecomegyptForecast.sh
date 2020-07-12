@@ -88,13 +88,13 @@ function return_field() {
 
   case ${DATATYPE} in
     quota)
-      data=$(awk -F',' '{print $1}' cache/output.cache)
+      data=$(awk -F',' '{print $1}' ${CACHE_DIR}/output.cache)
       ;;
     percent)
-      data=$(awk -F',' '{printf "%.2f\n", $2}' cache/output.cache)
+      data=$(awk -F',' '{printf "%.2f\n", $2}' ${CACHE_DIR}/output.cache)
       ;;
     due)
-      data=$(awk -F',' '{print $3}' cache/output.cache)
+      data=$(awk -F',' '{print $3}' ${CACHE_DIR}/output.cache)
       ;;
     *)
       data="N/A"
