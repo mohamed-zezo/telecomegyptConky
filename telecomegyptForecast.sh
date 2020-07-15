@@ -22,6 +22,7 @@ if [[ -z "${CONFIG}" ]]; then
 fi
 
 CACHE_DIR=${CACHE_DIR:-$(cat ${CONFIG} | jq '.cache_dir' -r)}
+Fetch_EVERY_MINUTE=${Fetch_EVERY_MINUTE:-$(cat ${CONFIG} | jq '.fetch_every_minute' -r)}
 PHONE_NUMBER=${PHONE_NUMBER:-$(cat ${CONFIG} | jq '.phone_number' -r)}
 PASSWORD=${PASSWORD:-$(cat ${CONFIG} | jq '.password' -r)}
 
@@ -46,8 +47,9 @@ function cache_needs_refresh() {
 
   last_modification_date=$(stat -c %Y ${cache_path})
   seconds=$(expr ${now} - ${last_modification_date})
-
-  if [[ "${seconds}" -gt 120 ]]; then
+  interval=$((${Fetch_EVERY_MINUTE} * 60))
+  echo ${interval}
+  if [[ "${seconds}" -gt ${interval} ]]; then
     return 1
   else
     return 0
@@ -61,6 +63,7 @@ function fetch_telecomegypt() {
   cache_path=$(get_cache_path)
   if [[ ! -f "${cache_path}" ]] || [[ "${refresh}" -eq 1 ]]; then
     echo "$command" > ${cache_path}.$$
+    echo refresh
     # only update the file if we successfully retrieved the JSON
     num_of_lines=$(cat "${cache_path}.$$" | wc -c) #print the byte count of the file
     if [[ "${num_of_lines}" -gt 5 ]]; then

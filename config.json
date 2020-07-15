@@ -1,5 +1,6 @@
 {
 	"cache_dir": "/tmp/conky",
+	"fetch_every_minute": "15",
 	"phone_number": "",
 	"password": ""
 }
