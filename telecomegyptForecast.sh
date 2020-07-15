@@ -48,7 +48,6 @@ function cache_needs_refresh() {
   last_modification_date=$(stat -c %Y ${cache_path})
   seconds=$(expr ${now} - ${last_modification_date})
   interval=$((${Fetch_EVERY_MINUTE} * 60))
-  echo ${interval}
   if [[ "${seconds}" -gt ${interval} ]]; then
     return 1
   else
